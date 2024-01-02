@@ -18,7 +18,6 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String orderNumber;
-
     private Boolean orderStatus = false;
     @OneToMany(cascade = CascadeType.ALL)
     private List<OrderItems> orderItemsList;
