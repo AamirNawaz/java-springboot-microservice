@@ -5,14 +5,17 @@ import com.aamirnawaz.orderservice.dto.OrderRequest;
 import com.aamirnawaz.orderservice.model.Order;
 import com.aamirnawaz.orderservice.model.OrderItems;
 import com.aamirnawaz.orderservice.repository.OrderRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class OrderService {
     private final OrderRepository orderRepository;
 
@@ -40,5 +43,14 @@ public class OrderService {
     public List<Order> getAllOrders() {
         return orderRepository.findAll();
     }
-    
+
+    public String deleteOrderById(Long orderId) {
+        Optional<Order> orderResult = orderRepository.findById(orderId);
+        if (orderResult.isPresent()) {
+            orderRepository.deleteById(orderId);
+            return "Order with given Id {" + orderId + "}deleted successfully!";
+        }
+        return "Order with given Id {" + orderId + "} not found!";
+
+    }
 }

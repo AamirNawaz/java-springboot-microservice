@@ -30,4 +30,10 @@ public class OrderController {
         return orderService.trackOrder(orderNumber);
     }
 
+    @DeleteMapping("/{orderId}")
+    public String deleteOrderById(@PathVariable Long orderId) {
+        return orderService.deleteOrderById(orderId);
+    }
+
+
 }
