@@ -62,6 +62,4 @@ public class InventoryService {
     private InventoryResponse mapToDto(Inventory inventory) {
         return new InventoryResponse(inventory);
     }
-
-
 }

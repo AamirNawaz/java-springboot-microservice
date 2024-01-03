@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/inventory")
 @RequiredArgsConstructor
@@ -40,11 +41,9 @@ public class InventoryController {
         return inventoryService.getAllInventories();
     }
 
-    @GetMapping("/{skuCode}")
+    @GetMapping("/isInStock/{skuCode}")
     @ResponseStatus(HttpStatus.OK)
     public boolean isInStock(@PathVariable String skuCode) {
         return inventoryService.isInStock(skuCode);
     }
-
-
 }
