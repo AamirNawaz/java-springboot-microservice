@@ -62,4 +62,17 @@ public class InventoryService {
     private InventoryResponse mapToDto(Inventory inventory) {
         return new InventoryResponse(inventory);
     }
+
+    @Transactional
+    public List<InventoryResponse> isExistsInStock(List<String> skuCodes) {
+        return inventoryRepository.findBySkuCodeIn(skuCodes).stream()
+                .map(inventory ->
+                        InventoryResponse.builder()
+                                .id(inventory.getId())
+                                .skuCode(inventory.getSkuCode())
+                                .isInStock(inventory.getQuantity() > 0)
+                                .quantity(inventory.getQuantity())
+                                .build()
+                ).toList();
+    }
 }

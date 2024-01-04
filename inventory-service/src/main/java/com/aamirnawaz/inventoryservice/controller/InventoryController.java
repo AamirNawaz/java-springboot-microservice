@@ -46,4 +46,10 @@ public class InventoryController {
     public boolean isInStock(@PathVariable String skuCode) {
         return inventoryService.isInStock(skuCode);
     }
+
+    @GetMapping("/isExistsInStock/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<InventoryResponse> isExistsInStock(@RequestParam List<String> skuCodes) {
+        return inventoryService.isExistsInStock(skuCodes);
+    }
 }
