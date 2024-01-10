@@ -2,7 +2,7 @@ server:
   port: 8092
 spring:
   application:
-    name: inventory-service
+    name: Inventory-service
   datasource:
     url: jdbc:postgresql://localhost:5432/inventory-service
     username: aamirnawaz
@@ -20,3 +20,5 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true
